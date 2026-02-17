@@ -11,7 +11,7 @@ const router = express.Router();
  */
 router.post('/register', async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password } = req.body || {};
 
     if (!name || !email || !password) {
       res.status(400);
@@ -46,6 +46,26 @@ router.post('/register', async (req, res, next) => {
         email: user.email,
       },
     });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+/**
+ * @route           POST /api/auth/logout
+ * @description     Logout user and clear refresh token
+ * @access          Private
+ */
+router.post('/logout', (req, res, next) => {
+  try {
+    res.clearCookie('refreshToken', {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'none',
+    });
+
+    res.status(200).json({ message: 'Logged out successfully' });
   } catch (error) {
     console.log(error);
     next(error);

@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import ideaRouter from './routes/ideaRoutes.js';
 import authRouter from './routes/authRoutes.js';
@@ -14,9 +15,11 @@ const PORT = process.env.PORT || 8000;
 //Connect to MongoDB
 connectDB();
 
+// Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Routes
 app.use('/api/ideas', ideaRouter);

@@ -18,7 +18,10 @@ connectDB();
 // Middleware
 
 // CORS Config
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://idea-drop-ui-gamma.vercel.app/',
+];
 app.use(
   cors({
     origin: allowedOrigins,

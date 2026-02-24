@@ -20,7 +20,7 @@ connectDB();
 // CORS Config
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://idea-drop-ui-gamma.vercel.app/',
+  'https://idea-drop-ui-gamma.vercel.app',
 ];
 app.use(
   cors({
